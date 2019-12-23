@@ -1,0 +1,80 @@
+
+html{
+	height: 100%;
+}
+body{
+	position: relative;
+	min-height: 100%;
+	padding-bottom : 5rem;
+}
+
+.hidden{
+	display: none;
+}
+/*product css
+
+*/
+/*
+Override css
+*/
+.bg-light {
+    background-color: #2b1465c4!important;
+}
+
+.margin-top-20{
+	margin-top: 20px;
+}
+
+.footer-bottom{
+	padding: 10px;
+	margin-top: 20px;
+	background: darkslategrey;
+	color: wheat;
+	position: absolute;
+	right: 120px;
+	left: 120px;
+	bottom: 0;  
+}
+
+.child-rows{
+    padding-left: 30px;
+    border-left: 1px solid #dfdfdf;
+    background: #FFF;
+}
+
+.child-rows a.list-group-item{
+	border-left: 0px!important;
+}
+
+.list-group-item.active{
+	z-index: 2;
+	color:#fff;
+	background-color: #02aadd;
+	border-color: #02aadd;
+	border-radius: 0px!important;
+
+}
+/* Bootstrap overrides */
+
+.carousel-indicators li{
+	position: relative;
+	flex: 0 1 auto;
+	width: 20px;
+	height: 20px;
+	border-radius: 20px;
+	margin-right : 3px;
+	margin-left : 3px;
+	text-indent : -999px;
+	cursor: pointer;
+	background-color: hsla(0, 49%, 89%, 0.5);	
+
+
+}
+
+/* Bootstrap overrides */
+
+.carousel-caption h5{
+	color: #000;
+	font-weight: bold;
+	padding: 10px;
+}
