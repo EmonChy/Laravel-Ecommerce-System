@@ -39,7 +39,7 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest')->except('logout');
+        $this->middleware('guest:admin')->except('logoutAdmin','logoutUser');
     }
 
     // override this method
@@ -75,7 +75,7 @@ class LoginController extends Controller
 
    // override this method
    // comes from this directory use Illuminate\Foundation\Auth\AuthenticatesUsers;
-
+ /*
    public function logout(Request $request)
    {
        $this->guard()->logout();
@@ -84,6 +84,16 @@ class LoginController extends Controller
 
        return $this->loggedOut($request) ?: redirect()->route('auth.admin.login');
    }
-   
+   */
+   // admin logout
+    public function logoutAdmin(){
+        Auth::guard('admin')->logout();
+        return redirect()->route('auth.admin.login');
+    }
 
+     protected function guard()
+    {
+        return Auth::guard('admin');
+    }
+    
 }

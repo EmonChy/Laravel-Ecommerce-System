@@ -53,6 +53,7 @@ class ForgotPasswordController extends Controller
      */
     public function broker()
     {
+        // put the provider name inside broker
         return Password::broker('admins');
     }
 }

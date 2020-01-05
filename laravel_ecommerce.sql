@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 23, 2019 at 03:37 PM
+-- Generation Time: Jan 05, 2020 at 02:25 PM
 -- Server version: 10.3.16-MariaDB
 -- PHP Version: 7.3.7
 
@@ -46,7 +46,7 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`id`, `name`, `email`, `password`, `phone_no`, `avatar`, `type`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'EmonChy', 'emonchy35@gmail.com', '$2y$10$slyPUZb5/FSaBUcOKG/1.u45EqsnNyvMce8MmwW947aOCHGMABA5K', '01700688508', NULL, 'Super Admin', 'xOqrSefJxA9gvlyf3TEoylv9a29oPBflVdIdDlx5ZG27eOSoRoZJbIqvKkTP', '2019-12-12 11:32:15', '2019-12-14 09:50:55');
+(1, 'EmonChy', 'emonchy35@gmail.com', '$2y$10$slyPUZb5/FSaBUcOKG/1.u45EqsnNyvMce8MmwW947aOCHGMABA5K', '01700688508', NULL, 'Super Admin', 'GKQGYhTrtd0pkdCXS6Xqup4oGMJYRaOnk68jLw3NUgxsvlTQVtf9iZRmI6hx', '2019-12-12 11:32:15', '2019-12-14 09:50:55');
 
 -- --------------------------------------------------------
 
@@ -88,6 +88,14 @@ CREATE TABLE `carts` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `carts`
+--
+
+INSERT INTO `carts` (`id`, `product_id`, `user_id`, `order_id`, `ip_address`, `product_quantity`, `created_at`, `updated_at`) VALUES
+(4, 6, 5, 2, '::1', 1, '2020-01-05 07:18:38', '2020-01-05 07:20:46'),
+(5, 3, 5, 2, '::1', 2, '2020-01-05 07:18:45', '2020-01-05 07:20:46');
 
 -- --------------------------------------------------------
 
@@ -230,9 +238,7 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`id`, `user_id`, `payment_id`, `ip_address`, `name`, `phone_no`, `shipping_address`, `email`, `message`, `is_paid`, `is_completed`, `is_seen_by_admin`, `transaction_id`, `created_at`, `updated_at`, `shipping_charge`, `customer_discount`) VALUES
-(1, 2, 1, '::1', 'Emon Chy', '01812086003', 'sss', 'emonchy35@gmail.com', NULL, 1, 1, 1, NULL, '2019-12-13 07:51:18', '2019-12-18 08:54:13', 60, 10),
-(2, 2, 1, '::1', 'Emon Chy', '01812086003', 'Chattogram', 'emonchy35@gmail.com', NULL, 1, 1, 1, NULL, '2019-12-18 21:42:24', '2019-12-18 21:46:02', 60, 0),
-(3, 2, 2, '::1', 'Emon Chy', '01812086003', 'Bibirhat,Chattogram', 'emonchy35@gmail.com', NULL, 1, 1, 1, '12bbc1', '2019-12-23 08:18:14', '2019-12-23 08:29:11', 60, 0);
+(2, 5, 3, '::1', 'Emon Chy', '01700688508', '388/D,Bibirhat,Muradpur', 'emonchy35@gmail.com', NULL, 1, 1, 1, '00asd345', '2020-01-05 07:20:46', '2020-01-05 07:22:21', 60, 900);
 
 -- --------------------------------------------------------
 
@@ -307,12 +313,12 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `category_id`, `brand_id`, `title`, `description`, `slug`, `quantity`, `price`, `status`, `offer_price`, `admin_id`, `created_at`, `updated_at`) VALUES
-(1, 3, 2, 'Asus Zenphone', 'well featured with stylish design', 'asus-zenphone', 15, 29000, 0, NULL, 1, '2019-08-27 09:42:21', '2019-08-27 09:42:21'),
-(2, 3, 2, 'Samsung Galaxy Prime', 'well featured', 'samsung-galaxy-prime', 10, 40000, 0, NULL, 1, '2019-08-27 09:45:05', '2019-08-27 09:45:05'),
-(3, 3, 2, 'Asus Zenphone Pro', 'will be uploaded soon', 'asus-zenphone-pro', 16, 35000, 0, NULL, 1, '2019-08-27 10:01:19', '2019-08-27 10:01:19'),
-(4, 3, 2, 'Hp Pc', 'will be uploaded later', 'hp-pc', 5, 45000, 0, NULL, 1, '2019-08-27 10:02:00', '2019-08-27 10:02:00'),
-(5, 3, 2, 'Hp Notebook', 'later upload', 'hp-notebook', 9, 52000, 0, NULL, 1, '2019-08-27 10:02:55', '2019-08-27 10:02:55'),
-(6, 4, 2, 'DSLR Camera', 'camera with latest technology', 'dslr-camera', 10, 35000, 0, NULL, 1, '2019-08-29 08:11:06', '2019-08-29 08:11:06');
+(1, 3, 2, 'Asus Zenphone', 'well featured with stylish design', 'asus-zenphone', 14, 29000, 0, NULL, 1, '2019-08-27 09:42:21', '2019-12-25 01:20:52'),
+(2, 3, 2, 'Samsung Galaxy Prime', 'well featured', 'samsung-galaxy-prime', 9, 40000, 0, NULL, 1, '2019-08-27 09:45:05', '2019-12-25 01:20:52'),
+(3, 3, 2, 'Asus Zenphone Pro', 'will be uploaded soon', 'asus-zenphone-pro', 13, 35000, 0, NULL, 1, '2019-08-27 10:01:19', '2020-01-05 07:20:46'),
+(4, 3, 2, 'Hp Pc', 'will be uploaded later', 'hp-pc', 4, 45000, 0, NULL, 1, '2019-08-27 10:02:00', '2019-12-25 07:35:44'),
+(5, 3, 2, 'Hp Notebook', 'later upload', 'hp-notebook', 19, 52000, 0, NULL, 1, '2019-08-27 10:02:55', '2019-12-25 07:35:44'),
+(6, 4, 2, 'DSLR Camera', 'camera with latest technology', 'dslr-camera', 17, 35000, 0, NULL, 1, '2019-08-29 08:11:06', '2020-01-05 07:20:46');
 
 -- --------------------------------------------------------
 
@@ -421,7 +427,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `first_name`, `last_name`, `username`, `phone_no`, `email`, `password`, `street_address`, `division_id`, `district_id`, `status`, `ip_address`, `avatar`, `shipping_address`, `remember_token`, `created_at`, `updated_at`) VALUES
-(2, 'Emon', 'Chy', 'emonchy', '01812086003', 'emonchy35@gmail.com', '$2y$10$ZPvfgzCI6WP8Y.y520V88OJfFrgPUuAIFAWK7jqhpm5KXiY.7BQna', 'Bibirhat,Muradpur', 3, 4, 1, '::1', NULL, NULL, NULL, '2019-12-06 22:57:03', '2019-12-07 00:10:27');
+(5, 'Emon', 'Chy', 'emonchy', '01700688508', 'emonchy35@gmail.com', '$2y$10$jkvMXoJKObziS8Q19Yz5D.vOW8.kfv6TidCqqpkCTL4mHZQ98kdVG', 'Bibirhat,Muradpur', 3, 4, 1, '::1', NULL, NULL, NULL, '2020-01-04 08:30:07', '2020-01-04 08:32:53');
 
 --
 -- Indexes for dumped tables
@@ -546,7 +552,7 @@ ALTER TABLE `brands`
 -- AUTO_INCREMENT for table `carts`
 --
 ALTER TABLE `carts`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -576,7 +582,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `payments`
@@ -612,7 +618,7 @@ ALTER TABLE `sliders`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables

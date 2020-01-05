@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 
 use App\Models\Cart;
 use App\Models\Order;
+use App\Models\Product;
+
 
 use Auth;
 
@@ -58,10 +60,11 @@ class CartsController extends Controller
             $cart->increment('product_quantity');
             $cart->save();
         }
-        # if user will first add a product 
+        # when user will first add a product 
         else{
 
             $cart = new Cart();
+            $product = new Product();
             # if user exist
             if(Auth::check()){
                 $cart->user_id = Auth::id();
@@ -91,6 +94,7 @@ class CartsController extends Controller
         if(!is_null($cart)){
            $cart->product_quantity = $request->product_quantity;
            $cart->save();
+
         }else{
             return redirect()->route('carts');
         }

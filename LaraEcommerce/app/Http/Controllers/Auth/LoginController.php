@@ -39,7 +39,7 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest')->except('logout');
+        $this->middleware('guest:web')->except('logoutUser');
     }
    // override this method
    // comes from this directory use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -53,18 +53,21 @@ class LoginController extends Controller
 
        // Find user by this email
        $user = User::where('email',$request->email)->first();
+       if($user){
        if($user->status==1){
            // login this user
            if(Auth::guard('web')->attempt(['email'=>$request->email,'password'=>$request->password],$request->remember)){
            // log in now
            return redirect()->intended(route('index'));    
-           } else{
+           }else{
             session()->flash('sticky_error','Invalid login');
             return redirect()->route('login');
            }
-          }else{
+          }else{   
+               /*           
                // send a token again for user
                if(!is_null($user)){
+
                    $user->notify(new VerifyRegistration($user));
                    session()->flash('success','A new confirmation email has sent to you...Please check and confirm your email');
                    return redirect('/');  
@@ -72,10 +75,23 @@ class LoginController extends Controller
                 session()->flash('sticky_error','Please login first');
                 return redirect()->route('login');
                }
+
+               */
+              
+              session()->flash('sticky_error','Please verify your account first');
+              return redirect()->route('login');
+              
            }
-       
+        }
+        else{
+            session()->flash('sticky_error','Please register your account first');
+            return redirect()->route('login');
+        }
 
    }
-   
-
+    // custom user logout
+     public function logoutUser(){
+        Auth::guard('web')->logout();
+        return redirect('/');
+    }
 }

@@ -151,12 +151,13 @@
                                             <div class="alert alert-success">
                                                 Please send the above money to this Bkash no and write your transaction code here..
                                             </div>
+
                                          </div>
                                         @endif                                      
                                     
                                 @endforeach
-                            <input type="text" class="form-control hidden" name="transaction_id" id="transaction_id" placeholder="Enter transaction code">
-                         
+                                    <input type="text" class="form-control hidden" name="transaction_id" id="transaction_id" placeholder="Enter transaction code">
+
                              {{-- jquery effects ends --}}    
                             </div>
                         </div>
@@ -165,6 +166,7 @@
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Order Now') }}
+                                    
                                 </button>
                             </div>
                         </div>
@@ -193,14 +195,14 @@
             // show transaction field
             $("#transaction_id").removeClass('hidden');
 
-        }else{
+        }else if($payment_method == "rocket"){
             $("#payment_rocket").removeClass('hidden');
+            // show transaction field
+            $("#transaction_id").removeClass('hidden');
             // rest of the types will be hidden
             $("#payment_cash_in").addClass('hidden');
+            // 
             $("#payment_bkash").addClass('hidden');
-            // show transaction field
-            ("#transaction_id").removeClass('hidden');
-
         }
 
     })

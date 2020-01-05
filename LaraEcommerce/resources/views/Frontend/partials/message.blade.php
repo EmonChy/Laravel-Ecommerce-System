@@ -1,4 +1,5 @@
 {{-- show error message of input fields --}}
+
 @if ($errors->any())
 <div class="container">
     <div class="row justify-content-center">

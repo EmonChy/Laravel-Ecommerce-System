@@ -9,6 +9,7 @@ use App\Models\Payment;
 
 use App\Models\Order;
 use App\Models\Cart;
+use App\Models\Product;
 use Auth;
 
 class CheckoutsController extends Controller
@@ -49,6 +50,7 @@ class CheckoutsController extends Controller
         }
 
         $order = new Order();
+        $product = new Product();
 
         $order->name = $request->name;
         $order->email = $request->email;
@@ -65,11 +67,18 @@ class CheckoutsController extends Controller
         $order->payment_id = Payment::where('short_name',$request->payment_id)->first()->id;
         $order->save();
 
+        
         foreach(Cart::totalCart() as $cart){
+            // product quantity decrease section start
+                $product = Product::where('id',$cart->product_id)->first();
+                $product->decrement('quantity', $cart->product_quantity);
+                $product->save();
+            //  product quantity decrease section end
             $cart->order_id = $order->id;
             $cart->save();
 
         }
+
         session()->flash('success' ,'Your Order has taken successfully,Pls wait admin will soon confirm it');
 
         return redirect()->route('index');

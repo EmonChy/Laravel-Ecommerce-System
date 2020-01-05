@@ -33,6 +33,7 @@
                             <th>No</th>
                             <th>Product Title</th>
                             <th>Product Image</th>
+                            <th>T Qty</th>
                             <th>Product Quantity</th>
                             <th>Unit Price</th>
                             <th>Sub total price</th>
@@ -52,6 +53,9 @@
                             @if($cart->product->images->count() > 0)
                                 <img class="img-thumbnail" src="{{ asset('images/products/'. $cart->product->images->first()->image) }}" width="100" height="60"  alt="{{ $cart->product->title }}">                 
                             @endif
+                            </td>
+                            <td>
+                                {{$cart->product->quantity}}
                             </td>
                             <td>
                             <form class="form-inline" action="{{ route('carts.update', $cart->id) }}" method="post">
@@ -82,7 +86,7 @@
                             </tr>
                         @endforeach
                         <tr>
-                            <td colspan=4></td>
+                            <td colspan=5></td>
                             <td>Total Amount </td> 
                             <td colspan=2><strong>{{ $total_amount }} Tk </strong></td>
                         </tr>

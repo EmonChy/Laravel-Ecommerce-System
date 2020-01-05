@@ -40,6 +40,7 @@ Route::get('/profile','Frontend\UsersController@profile')->name('user.profile');
 Route::post('/profile/update','Frontend\UsersController@profileUpdate')->name('user.profile.update');
 });
 
+
 // cart routes starts
 Route::group(['prefix'=>'carts'],function(){
 	// show cart page
@@ -63,16 +64,20 @@ Route::group(['prefix'=>'checkouts'],function(){
 	});	
 
 // Admin routes start
-
+	
 Route::group(['prefix'=>'admin'],function(){
-    // show the admin dashboard
-	Route::get('/','Backend\PagesController@index')->name('admin.index');
-   // show admin login form
-	Route::get('/login','Auth\Admin\LoginController@showLoginForm')->name('auth.admin.login');
-   // log in action
+
+	// log in action
 	Route::post('/login/submit','Auth\Admin\LoginController@login')->name('admin.login.submit');
+	// show admin login form
+	Route::get('/login','Auth\Admin\LoginController@showLoginForm')->name('auth.admin.login')->middleware('access');
+
+	Route::group(['middleware'=>'logUser'],function(){
+	// show the admin dashboard
+	Route::get('/','Backend\PagesController@index')->name('admin.index');
+	});
    // logout
-	Route::post('/logout','Auth\Admin\LoginController@logout')->name('admin.logout');
+	Route::post('/logout','Auth\Admin\LoginController@logoutAdmin')->name('admin.logout');
    // password email send for admin
 	Route::get('/password/reset','Auth\Admin\ForgotPasswordController@showLinkRequestForm')->name('admin.password.request');
     Route::post('/password/email','Auth\Admin\ForgotPasswordController@sendResetLinkEmail')->name('admin.password.email');
@@ -80,7 +85,6 @@ Route::group(['prefix'=>'admin'],function(){
    Route::get('/password/reset/{token}','Auth\Admin\ResetPasswordController@showResetForm')->name('admin.password.reset');
    Route::post('/password/reset','Auth\Admin\ResetPasswordController@reset')->name('admin.password.update');
 	
-
 // Product routes start for admin or backend
 
 	Route::group(['prefix'=>'/products'],function(){
@@ -112,10 +116,11 @@ Route::group(['prefix'=>'/orders'],function(){
 	Route::post('/completed/{id}','Backend\OrdersController@completed')->name('admin.order.completed');
     // order paid confirm by admin
 	Route::post('/paid/{id}','Backend\OrdersController@paid')->name('admin.order.paid');
-    // 
+    // updated charge on products by admin
 	Route::post('/charge-update/{id}','Backend\OrdersController@chargeUpdate')->name('admin.order.charge');
-    // 
+    // generate pdf invoice 
 	Route::get('/invoice/{id}','Backend\OrdersController@generateInvoice')->name('admin.order.invoice');
+   
 
 }); 
 
@@ -206,10 +211,13 @@ Route::group(['prefix'=>'/sliders'],function(){
 
 });
 
-
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+// custom user logout
+Route::post('logout','Auth\LoginController@logoutUser')->name('logout');
+
 
 // API routes
 // dependent dropdown list 

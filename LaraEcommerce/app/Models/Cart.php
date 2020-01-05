@@ -36,14 +36,12 @@ class Cart extends Model
 
         return $this->belongsTo(Product::class);
     }
-  
-/*    
+    
     // count total product items that added by a user 
     public static function totalItems(){
         # if user is authenticated
         if(Auth::check()){
             $carts = Cart::where('user_id', Auth::id())
-                         //->orWhere('ip_address',request()->ip())
                          ->where('order_id',NULL)
                          ->get();
         }else{
@@ -75,8 +73,8 @@ class Cart extends Model
             return $carts;  // return total cart 
         }
 
-     */ 
-    
+     
+    /*
     public static function totalCart(){
         # if user is authenticated
         if(Auth::check()){
@@ -101,5 +99,6 @@ class Cart extends Model
         }
         return $total_item;  // return total no of items that added by a user
     }
+    */
     
 }

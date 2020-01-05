@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use App\Models\Order;
+use App\Models\Product;
 use PDF;
 
 class OrdersController extends Controller
@@ -30,7 +31,7 @@ class OrdersController extends Controller
     // action for complete order
     public function completed($id){
         $order = Order::find($id);
-
+        
         if($order->is_completed){
             $order->is_completed = 0;
         }else{
@@ -77,4 +78,6 @@ class OrdersController extends Controller
             //return $pdf->download('invoice.pdf');
 
         }
+
+        
 }

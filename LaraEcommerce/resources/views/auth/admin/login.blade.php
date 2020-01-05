@@ -17,7 +17,10 @@
             <div class="card">
 
                 <div class="card-header">{{ __('Admin Login') }}</div>
+                
+                    {{-- show error message --}}
 					 @include('Frontend.partials.message')
+                
                 <div class="card-body">
                     <form method="POST" action="{{ route('admin.login.submit') }}">
                         @csrf
